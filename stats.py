@@ -1,38 +1,30 @@
-def num_words(book_text):
-    words = book_text.split()
-    count = 0
+def num_words(book):
+    words_list = book.split()
+    num_words = 0
 
-    for word in words:
-        count += 1
+    for word in words_list:
+        num_words += 1
+    return num_words
 
-    return count
+def num_chars(book):
+    words_list = book.split()
+    char_dict = {}
 
-def num_chars(book_text):
-    words = book_text.split()
-    character_dict = {}
-
-    for word in words:
+    for word in words_list:
         for i in range(0,len(word)):
-            if str(word[i]).lower() in character_dict:
-                character_dict[str(word[i]).lower()] += 1
+            if str(word[i]).lower() in char_dict:
+                char_dict[str(word[i]).lower()] += 1
             else:
-                character_dict[str(word[i]).lower()] = 1
-    return character_dict
+                char_dict[str(word[i]).lower()] = 1
+    return char_dict
 
 def sort_on(dict):
     return dict["num"]
 
-def sorted_dict(input_dict):
-    sort_list = []
-    
-    for key in input_dict:
-        sort_list.append({"char": str(key), "num": input_dict[key]})
+def sorted_dict(dict):
+    sorted_list = []
 
-    sort_list.sort(reverse=True, key=sort_on)
-
-    return sort_list
-
-# test_string = "My name is Brandon Dickens"
-# char_dict = num_chars(test_string)
-
-# print(sorted_dict(char_dict))
+    for key in dict:
+        sorted_list.append({"char": str(key), "num": dict[key]})
+    sorted_list.sort(reverse=True, key=sort_on)
+    return sorted_list
